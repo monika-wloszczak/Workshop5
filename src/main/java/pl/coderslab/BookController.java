@@ -3,7 +3,7 @@ package pl.coderslab;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
+//import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,7 +40,13 @@ public String deleteBook(@PathVariable("title") String title){
 	return memoryBookService.deleteBook(title);
 }
 @PostMapping("/edit")
-public String editBook(@PathVariable("book") Book book){
+public String editBook(@RequestParam("id") long id,
+		@RequestParam("isbn") String isbn,
+		@RequestParam("title") String title,
+		@RequestParam("author") String author,
+		@RequestParam("publisher") String publisher,
+		@RequestParam("type") String type){
+	Book book = new Book(id,isbn,title, author, publisher, type);
 	return memoryBookService.editBook(book);
 }
 @RequestMapping("/showBooks")//++
@@ -61,5 +67,5 @@ public Book addBook(@RequestParam("id") long id,
 
 
 
-;
+
 }
