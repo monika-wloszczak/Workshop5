@@ -1,7 +1,6 @@
 package pl.coderslab;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +38,14 @@ public String getBook(@PathVariable("title") String title){
 public String deleteBook(@PathVariable("title") String title){
 	return memoryBookService.deleteBook(title);
 }
-@PostMapping("/edit")
+
+@RequestMapping("/edit")
+public String edit() {
+	return "form";
+}
+
+
+@PostMapping("/editbook")
 public String editBook(@RequestParam("id") long id,
 		@RequestParam("isbn") String isbn,
 		@RequestParam("title") String title,
